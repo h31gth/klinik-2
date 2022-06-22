@@ -6,6 +6,7 @@ use App\Http\Controllers\DokterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\JadwalDokterController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PoliklinikController;
 use App\Models\JadwalDokter;
 use App\Models\Poliklinik;
@@ -45,5 +46,6 @@ Route::group(['middleware' => ['role:Admin']],function () {
         Route::resource('/poliklinik', PoliklinikController::class);
         Route::resource('/jadwal_dokter',JadwalDokterController::class);
         Route::resource('/pasien', PasienController::class);
+        Route::resource('/pendaftaran', PendaftaranController::class);
     });
 });

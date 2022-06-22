@@ -21,11 +21,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>No Hp</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Jenis Kelamin</th>
+                        <th>Nama Pasien</th>
+                        <th>Nama Dokter</th>
+                        <th>No Antrian</th>
+                        <th>Tanggal Pendaftaran</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -33,11 +33,11 @@
                     @foreach ($data as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nama }}</td>
-                        <td>{{ $item->alamat }}</td>
-                        <td>{{ $item->HP }}</td>
-                        <td>{{ $item->tgl_lahir }}</td>
-                        <td>{{ $item->jk }}</td>
+                        <td>{{ $item->pasien }}</td>
+                        <td>{{ $item-> }}</td>
+                        <td>{{ $item->no_antrian }}</td>
+                        <td>{{ $item->tgl_pendaftaran }}</td>
+                        <td>{{ $item->status }}</td>
                         <td>
                             <a class="btn btn-warning ml-1" href="{{ url('admin/pasien/'.$item->id.'/edit') }}"><i class="fas fa-edit"></i></a>
                             <form action="{{ url('admin/pasien/'.$item->id) }}" class="d-inline" method="POST">
