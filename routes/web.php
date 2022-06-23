@@ -32,6 +32,7 @@ Route::get('/landingpage/poliklinik', [PoliklinikController::class, 'tampilpoli'
 
 Route::get('/landingpage/jadwal_dokter', [JadwalDokterController::class, 'tampiljadwal']);
 
+Route::post('/auth/register', [PasienController::class,'createpasien']);
 Auth::routes();
 
 Route::get('/logout',[LoginController::class,'logout']);

@@ -16,12 +16,11 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        $data = Pendaftaran::get();
-        $dokter = Dokter::select('dokter.nama AS dokter')
+        $data = Pendaftaran::select('pendaftaran.*','dokter.name AS dokter','pasien.nama AS pasien')
         ->join('jadwal_dokters','jadwal_dokters.id','=','pendaftaran.jadwal_dokter_id')
         ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
-        ->first();
-        $pasien = Pasien::all();
+        ->join('pasien','pasien.id','=','pendaftaran.pasien_id')
+        ->get();
         return view('admin.pendaftaran.index',compact('data'));
     }
 

@@ -18,7 +18,7 @@
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ url('admin/pendaftaran') }}">
             <i class="fas fa-users"></i>
             <span>Pendaftaran</span></a>
     </li>
