@@ -28,14 +28,20 @@
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card o-hidden border-0 shadow-lg my-4">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                        @endif
                         <div class="row">
                             <div style="background:url({{ asset('admin/img/bg-login.png') }});" class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
+                                        <br><br><br><br>
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
                                     <form class="user" method="POST" action="{{ route('login') }}">
@@ -46,8 +52,8 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" name="password" placeholder="Password">
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block">Log in</button>
-                                        <hr>
+                                        <button class="btn btn-primary btn-user mr-2 px-4">Log in</button>
+                                        <a href="{{ url('/') }}" class="btn btn-primary btn-user px-4">Back</a>
                                     </form>
                                     <hr>
                                     <div class="text-center">
@@ -79,6 +85,18 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        @if(Session::has('message'))
+      swal({
+        title: "Success",
+        text: "{{ session('message') }}",
+        icon: "success",
+      });
+      @endif
+    </script>
 </body>
 
 {{-- <div class="container">

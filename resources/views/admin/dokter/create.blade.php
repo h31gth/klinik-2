@@ -52,7 +52,7 @@
             <img width="100px" height="75px" class="img-preview img-thumbnail mt-2 mb-4"/>
             <input class="form-control-file" id="image" name="image" type="file" onchange="previewImage()">
         </div>
-        <div class="form-group"><button type="submit" class="btn btn-primary">Tambah</button></div>
+        <div class="form-group"><button type="submit" class="btn btn-primary btn-user px-5">Tambah</button></div>
         </div>
         </div>
     </form>

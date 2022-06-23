@@ -62,7 +62,7 @@
             <img id="output" src="{{ asset($data->image) }}" width="100px" height="75px" class="img-preview img-thumbnail mt-2 mb-4"/>
             <input class="form-control-file" name="image" type="file" id="image" accept="image/*" onchange="previewImage()">
         </div>
-        <div class="form-group"><button type="submit" class="btn btn-primary">Edit</button></div>
+        <div class="form-group"><button type="submit" class="btn btn-primary btn-user px-5">Edit</button></div>
         </div>
         </div>
     </form>

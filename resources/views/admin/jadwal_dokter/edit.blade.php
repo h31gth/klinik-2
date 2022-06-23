@@ -31,7 +31,7 @@
             <label for="">Jam Selesai</label>
             <input type="time" class="form-control" name="jam_selesai" value="{{ $data->jam_selesai }}">
         </div>
-        <div class="form-group"><button type="submit" class="btn btn-primary">Edit</button></div>
+        <div class="form-group"><button type="submit" class="btn btn-primary btn-user px-5">Edit</button></div>
         </div>
         </div>
     </form>

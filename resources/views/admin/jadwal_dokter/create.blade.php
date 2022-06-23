@@ -30,7 +30,7 @@
             <label for="">Jam Selesai</label>
             <input type="time" class="form-control" name="jam_selesai">
         </div>
-        <div class="form-group"><button type="submit" class="btn btn-primary">Tambah</button></div>
+        <div class="form-group"><button type="submit" class="btn btn-primary btn-user px-5">Tambah</button></div>
         </div>
         </div>
     </form>
