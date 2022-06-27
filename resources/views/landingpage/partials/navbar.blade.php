@@ -1,20 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block"
       data-navbar-on-scroll="data-navbar-on-scroll">
       <div class="container">
-        <a href="{{ url('/') }}"><h1>Klinik</h1></a>
+        <a href="{{ url('/') }}"><img class="img-fluid" width="110px"  src="{{ asset('images/Logo.png') }}" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
             class="navbar-toggler-icon"> </span></button>
         <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
-            <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="{{ url('landingpage/about') }}">Antrian</a></li>
+            <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="{{ url('/') }}">Home</a></li>
+            <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="{{ url('landingpage/antrian') }}">Antrian</a></li>
             @if (auth()->user())
             <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/pendaftaran') }}">Pendaftaran</a></li>
             @endif
             <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/jadwal_dokter') }}">Jadwal Dokter</a></li>
             <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/poliklinik') }}">Poliklinik</a></li>
             <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/dokter') }}">Dokter </a></li>
-            <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/kontak') }}">Kontak</a></li>
           @if (auth()->user())
           <li class="nav-item dropdown px-2">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

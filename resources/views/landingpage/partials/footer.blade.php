@@ -20,14 +20,15 @@
         <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Daftar</h5>
         <ul class="list-unstyled mb-md-4 mb-lg-0">
           <li class="lh-lg"><a class="footer-link" href="#!">Registrasi</a></li>
+          @if (auth()->user())
           <li class="lh-lg"><a class="footer-link" href="#!">Pendaftaran</a></li>
+          @endif
         </ul>
       </div>
       <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
         <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Customer Care</h5>
         <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="footer-link" href="#!">About Us</a></li>
-          <li class="lh-lg"><a class="footer-link" href="#!">Contact US</a></li>
+          <li class="lh-lg"><a class="footer-link" href="#!">Kontak</a></li>
         </ul>
       </div>
     </div>
@@ -41,7 +42,7 @@
     <div class="container">
       <div class="row justify-content-md-between justify-content-evenly py-4">
         <div class="col-12 col-sm-8 col-md-6 col-lg-auto text-center text-md-start">
-          <p class="fs--1 my-2 fw-bold text-200">All rights Reserved &copy; Kelompok 2, 2021</p>
+          <p class="fs--1 my-2 fw-bold text-200">All rights Reserved &copy; Kelompok 2, 2022</p>
         </div>
         <div class="col-12 col-sm-8 col-md-6">
           <p class="fs--1 my-2 text-center text-md-end text-200"> Made with&nbsp;
