@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
 use App\Models\JadwalDokter;
 use Illuminate\Http\Request;
-use App\Models\Dokter;
+use Illuminate\Pagination\Paginator;
 
 class JadwalDokterController extends Controller
 {
@@ -135,7 +136,7 @@ class JadwalDokterController extends Controller
         $data = JadwalDokter::select('jadwal_dokters.*','dokter.name AS dokter','poliklinik.nama AS poli')
         ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
         ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
-        ->get();
+        ->latest()->paginate(12);
         return view('landingpage.jadwal_dokter.index',compact('data'));
     }
 }

@@ -9,29 +9,23 @@
 
     <div class="container">
         <h1 class="text-center mb-4">JADWAL DOKTER</h1>
-        <div class="card-body">
-            <table class="table table-info text-center mb-4">
-                <thead>
-                    <tr>
-                        <th>Dokter</th>
-                        <th>Poliklinik</th>
-                        <th>Hari</th>
-                        <th>Jam Mulai</th>
-                        <th>Jam Selesai</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($data as $item)
-                    <tr>
-                        <td>{{ $item->dokter }}</td>
-                        <td>{{ $item->poli }}</td>
-                        <td>{{ $item->hari }}</td>
-                        <td>{{ $item->jam_mulai }}</td>
-                        <td>{{ $item->jam_selesai }}</td>
-                      </tr>   
-                    @endforeach
-                  </tbody>
-              </table>
+        <div class="row">
+        @foreach ($data as $item)
+        <div class="col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ $item->poli }}</h5>
+            <h6 class="card-subtitle mb-2 text-center">{{ $item->dokter }}</h6>
+            <div class="card-text">Hari :  {{ $item->hari }}</div>
+            <div class="card-text">Jam Mulai : {{ $item->jam_mulai }}</div>
+            <div class="card-text">Jam Selesai : {{ $item->jam_selesai }}</div>
+          </div>
         </div>
+        </div>
+        @endforeach
+        </div>
+    </div>
+    <div class="mt-3 d-flex justify-content-center">
+      {{ $data->links() }}
     </div>
 @endsection

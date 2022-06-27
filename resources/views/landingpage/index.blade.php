@@ -46,9 +46,6 @@
             <h2 class="fw-bold mb-4">Kami mengembangkan sistem pelayanan
                <br class="d-none d-sm-block" />kesehatan untuk Anda</h2>
             <p>Kami berpikir bahwa setiap orang harus memiliki akses <br class="d-none d-sm-block" />mudah ke perawatan kesehatan yang sangat baik. Tujuan kami <br class="d-none d-sm-block" />adalah membuat prosedur sesederhana mungkin bagi pasien kami dan <br class="d-none d-sm-block" />menawarkan perawatan di mana pun mereka berada — secara langsung atau sesuai kenyamanan mereka. </p>
-            <div class="py-3">
-              <button class="btn btn-lg btn-outline-primary rounded-pill" type="submit">Learn more </button>
-            </div>
           </div>
         </div>
       </div>
@@ -108,6 +105,7 @@
             </div>
           </div>
         </div>
+        @include('landingpage.partials.banner')
       </div>
     </section>
       @endsection
