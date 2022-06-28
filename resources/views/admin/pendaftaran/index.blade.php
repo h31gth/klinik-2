@@ -37,14 +37,22 @@
                         <td>{{ $item->dokter }}</td>
                         <td>{{ $item->no_antrian }}</td>
                         <td>{{ $item->tgl_pendaftaran }}</td>
-                        <td>{{ $item->status }}</td>
+                        <td><div class="{{ ($item->status == 'Terdaftar') ? 'badge bg-info text-light' : 'badge bg-success text-light' }}">{{ $item->status }}</div></td>
                         <td>
-                            <a class="btn btn-warning ml-1" href="{{ url('admin/pendaftaran/'.$item->id.'/edit') }}"><i class="fas fa-edit"></i></a>
+                              @if($item->status == 'Selesai')
+                              <div class="btn btn-success btn-sm">Sudah Selesai</div>
+                              @else
+                              <form action="{{ url('admin/pendaftaran/'.$item->id) }}" class="d-inline" method="POST">
+                                @method('put')
+                                @csrf
+                                <button class="btn btn-success btn-sm ml-1 border-0 alert_notif" onclick="return confirm('Selesaikan Pendaftaran ?')">Selesai</button>
+                              </form>
                             <form action="{{ url('admin/pendaftaran/'.$item->id) }}" class="d-inline" method="POST">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger ml-1 border-0 alert_notif" onclick="return confirm('Hapus Data ?')"><i class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-danger btn-sm ml-1 border-0 alert_notif" onclick="return confirm('Batalkan Pendaftaran ?')">Batalkan</button>
                               </form>
+                              @endif
                         </td>
                     </tr>
                     @endforeach

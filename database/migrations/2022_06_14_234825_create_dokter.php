@@ -23,7 +23,7 @@ class CreateDokter extends Migration
             $table->string('image');
             $table->timestamps();
 
-            $table->foreign('poli_id')->references('id')->on('poliklinik');
+            $table->foreign('poli_id')->references('id')->on('poliklinik')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Dokter;
 use App\Models\Pasien;
-use App\Models\Pendaftaran;
 use App\Models\Poliklinik;
+use App\Models\Pendaftaran;
+use App\Models\JadwalDokter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PendaftaranController extends Controller
 {
@@ -32,7 +35,13 @@ class PendaftaranController extends Controller
      */
     public function create()
     {
-        
+        $pasien = Pasien::get();
+        $mytime = Carbon::now('Asia/Jakarta');
+        $jadwal = JadwalDokter::select('jadwal_dokters.*','dokter.name AS dokter')
+        ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
+        ->where('hari',$mytime->isoFormat('dddd'))
+        ->where('jam_selesai',">", $mytime->isoFormat('H:m:s'))->get();
+        return view('admin.pendaftaran.create',compact('pasien','jadwal'));   
     }
 
     /**
@@ -43,7 +52,19 @@ class PendaftaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id_jadwal = $request->jadwal_dokter;
+        $no_antrian = Pendaftaran::generateNoAntrian($id_jadwal,date('Y-m-d'));
+        $no_pasien = $request->pasien;
+        $users = Auth::id();
+        Pendaftaran::create([
+            'pasien_id' => $no_pasien,
+            'jadwal_dokter_id' => $id_jadwal,
+            'users_id' => $users,
+            'tgl_pendaftaran' => date('Y-m-d'),
+            'no_antrian' => $no_antrian,
+            'status' => "Terdaftar"
+        ]);
+        return redirect('admin/pendaftaran')->with('message', 'Data Berhasil Di Tambahkan');
     }
 
     /**
@@ -63,9 +84,11 @@ class PendaftaranController extends Controller
      * @param  \App\Models\Pendaftaran  $pendaftaran
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pendaftaran $pendaftaran)
+    public function edit($id)
     {
-        //
+        $data = Pendaftaran::findOrFail($id);
+        $data->delete();
+        return redirect('admin/pendaftaran')->with('message','Data Berhasil Dihapus');
     }
 
     /**
@@ -75,9 +98,13 @@ class PendaftaranController extends Controller
      * @param  \App\Models\Pendaftaran  $pendaftaran
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pendaftaran $pendaftaran)
+    public function update(Request $request, $id)
     {
-        //
+        $pendaftaran = Pendaftaran::findOrFail($id);
+        $pendaftaran->update([
+            'status' => 'Selesai'
+        ]);
+    return redirect('admin/pendaftaran')->with('message','Sudah Selesai!');
     }
 
     /**
@@ -101,5 +128,21 @@ class PendaftaranController extends Controller
         ->get();
         
         return view('landingpage.pendaftaran.antrian',compact('data'));
+    }
+
+    public function daftarpasien(Request $request){
+        $id_jadwal = $request->jadwal_dokter;
+        $no_antrian = Pendaftaran::generateNoAntrian($id_jadwal,date('Y-m-d'));
+        $no_pasien = $request->pasien;
+        $users = Auth::id();
+        Pendaftaran::create([
+            'pasien_id' => $no_pasien,
+            'jadwal_dokter_id' => $id_jadwal,
+            'users_id' => $users,
+            'tgl_pendaftaran' => date('Y-m-d'),
+            'no_antrian' => $no_antrian,
+            'status' => "Terdaftar"
+        ]);
+        return redirect('landingpage/pendaftaran')->with('message', 'Pendaftaran Berhasil');
     }
 }

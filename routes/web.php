@@ -35,6 +35,8 @@ Route::get('/landingpage/jadwal_dokter', [JadwalDokterController::class, 'tampil
 Route::get('/landingpage/antrian',[PendaftaranController::class, 'antrian']);
 
 Route::post('/auth/register', [PasienController::class,'createpasien']);
+
+Route::post('/landingpage/pendaftaran',[PendaftaranController::class,'daftarpasien']);
 Auth::routes();
 
 Route::get('/logout',[LoginController::class,'logout']);

@@ -12,11 +12,11 @@
         <div class="row">
         @foreach ($data as $item)
         <div class="col-lg-3">
-        <div class="card">
+        <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title text-center">{{ $item->poli }}</h5>
             <h6 class="card-subtitle mb-2 text-center">{{ $item->dokter }}</h6>
-            <div class="card-text">Hari :  {{ $item->hari }}</div>
+            <div class="card-text">Hari : {{ $item->hari }}</div>
             <div class="card-text">Jam Mulai : {{ $item->jam_mulai }}</div>
             <div class="card-text">Jam Selesai : {{ $item->jam_selesai }}</div>
           </div>

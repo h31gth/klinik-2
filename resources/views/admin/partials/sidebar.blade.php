@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('admin/dashboard') }}">
         <div class="sidebar-brand-icon">
             <i class="fas fa-stethoscope"></i>
         </div>
@@ -12,12 +12,12 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
-        <a class="nav-link" href="">
+    <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('admin/dashboard') }}">
             <i class="fas fa-columns"></i>
             <span>Dashboard</span></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/pendaftaran*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('admin/pendaftaran') }}">
             <i class="fas fa-users"></i>
             <span>Pendaftaran</span></a>
