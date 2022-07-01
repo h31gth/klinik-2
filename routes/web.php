@@ -4,12 +4,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JadwalDokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PoliklinikController;
-use App\Models\JadwalDokter;
-use App\Models\Poliklinik;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +21,9 @@ use App\Models\Poliklinik;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [PoliklinikController::class, 'tampilpoli'], function () {
     return view('landingpage/index');
 })->name('home');
-
-Route::get('/landingpage/dokter', [DokterController::class, 'tampildokter']);
-
-Route::get('/landingpage/poliklinik', [PoliklinikController::class, 'tampilpoli']);
 
 Route::get('/landingpage/jadwal_dokter', [JadwalDokterController::class, 'tampiljadwal']);
 
@@ -36,17 +31,21 @@ Route::get('/landingpage/antrian',[PendaftaranController::class, 'antrian']);
 
 Route::post('/auth/register', [PasienController::class,'createpasien']);
 
-Route::post('/landingpage/pendaftaran',[PendaftaranController::class,'daftarpasien']);
 Auth::routes();
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/landingpage/pendaftaran',[PendaftaranController::class,'daftartampil']);
+    Route::get('/landingpage/pendaftaran/show/{id}',[PendaftaranController::class,'showdaftar']);
+    Route::get('/landingpage/pendaftaran/create',[PendaftaranController::class,'listdaftar']);
+    Route::post('/landingpage/pendaftaran',[PendaftaranController::class,'daftarpasien']);
+    Route::get('/landingpage/pendaftaran/{id}',[PendaftaranController::class, 'hapus_daftar']);
+});
 
 Route::get('/logout',[LoginController::class,'logout']);
 
 Route::group(['middleware' => ['role:Admin']],function () {
     Route::prefix('/admin')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin/index');
-        })->name('dashboard');
-
+        Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
         Route::resource('/dokter', DokterController::class);
         Route::resource('/poliklinik', PoliklinikController::class);
         Route::resource('/jadwal_dokter',JadwalDokterController::class);
@@ -54,3 +53,5 @@ Route::group(['middleware' => ['role:Admin']],function () {
         Route::resource('/pendaftaran', PendaftaranController::class);
     });
 });
+
+Route::resource('/admin/user', UserController::class)->middleware('role:Admin');

@@ -39,12 +39,12 @@
                         <td>{{ $item->tgl_lahir }}</td>
                         <td>{{ $item->jk }}</td>
                         <td>
-                            <a class="btn btn-warning ml-1" href="{{ url('admin/pasien/'.$item->id.'/edit') }}"><i class="fas fa-edit"></i></a>
-                            <form action="{{ url('admin/pasien/'.$item->id) }}" class="d-inline" method="POST">
-                                @method('delete')
+                            <form method="POST" class="d-inline" action="{{ url('admin/pasien/'.$item->id) }}">
                                 @csrf
-                                <button class="btn btn-danger ml-1 border-0 alert_notif" onclick="return confirm('Hapus Data ?')"><i class="fas fa-trash-alt"></i></button>
-                              </form>
+                                <a class="btn btn-warning ml-1" href="{{ url('admin/pasien/'.$item->id.'/edit') }}"><i class="fas fa-edit"></i></a>
+                                <input name="_method" type="hidden" value="DELETE">
+                                <button type="submit" class="btn btn-xs btn-danger show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -54,6 +54,27 @@
     </div>
 </div>
 </div>
+<script>
+    $('.show_confirm').click(function(event) {
+         var form =  $(this).closest("form");
+         var name = $(this).data("name");
+         event.preventDefault();
+         swal({
+             title: "Apakah Anda Yakin Akan Hapus Data ? ",
+             text: "Jika Dihapus Data Akan Hilang",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+         })
+         .then((willDelete) => {
+           if (willDelete) {
+             form.submit();
+           }else{
+               swal("Data Tidak Jadi dihapus");
+           }
+         });
+     });                        
+   </script>
 <script>
     @if(Session::has('message'))
   swal({

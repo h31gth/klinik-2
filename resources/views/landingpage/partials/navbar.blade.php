@@ -9,19 +9,15 @@
           <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
             <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="{{ url('/') }}">Home</a></li>
             <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="{{ url('landingpage/antrian') }}">Antrian</a></li>
-            @if (auth()->user())
             <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/pendaftaran') }}">Pendaftaran</a></li>
-            @endif
             <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/jadwal_dokter') }}">Jadwal Dokter</a></li>
-            <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/poliklinik') }}">Poliklinik</a></li>
-            <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/dokter') }}">Dokter </a></li>
           @if (auth()->user())
           <li class="nav-item dropdown px-2">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{ (auth()->user()->name) }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item"  href="{{ url('/logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+              <li><a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
             </ul>
           </li>
         </ul>

@@ -38,12 +38,12 @@
                         <td>{{ $item->jam_mulai }}</td>
                         <td>{{ $item->jam_selesai }}</td>
                         <td>
+                        <form method="POST" class="d-inline" action="{{ url('admin/jadwal_dokter/'.$item->id) }}">
+                            @csrf
                             <a class="btn btn-warning ml-1" href="{{ url('admin/jadwal_dokter/'.$item->id.'/edit') }}"><i class="fas fa-edit"></i></a>
-                            <form action="{{ url('admin/jadwal_dokter/'.$item->id) }}" class="d-inline" method="POST">
-                                @method('delete')
-                                @csrf
-                                <button class="btn btn-danger ml-1 border-0 alert_notif" onclick="return confirm('Hapus Data ?')"><i class="fas fa-trash-alt"></i></button>
-                              </form>
+                            <input name="_method" type="hidden" value="DELETE">
+                            <button type="submit" class="btn btn-xs btn-danger show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button>
+                        </form>
                         </td>
                     </tr>
                     @endforeach
@@ -56,6 +56,27 @@
     <!-- Page level plugins -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script>
+        $('.show_confirm').click(function(event) {
+             var form =  $(this).closest("form");
+             var name = $(this).data("name");
+             event.preventDefault();
+             swal({
+                 title: "Apakah Anda Yakin Akan Hapus Data ? ",
+                 text: "Jika Dihapus Data Akan Hilang",
+                 icon: "warning",
+                 buttons: true,
+                 dangerMode: true,
+             })
+             .then((willDelete) => {
+               if (willDelete) {
+                 form.submit();
+               }else{
+                   swal("Data Tidak Jadi dihapus");
+               }
+             });
+         });                        
+       </script>
 <script>
     @if(Session::has('message'))
   swal({

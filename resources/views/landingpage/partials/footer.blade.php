@@ -3,37 +3,6 @@
   </div>
   <!--/.bg-holder-->
 
-  <div class="container">
-    <div class="row py-8">
-      <div class="col-12 col-sm-12 col-lg-6 mb-4 order-0 order-sm-0"><a class="h1 text-light text-decoration-none" href="#">Klinik</a>
-        <p class="text-light my-4">The world's most trusted <br />telehealth company.</p>
-      </div>
-      <div class="col-6 col-sm-4 col-lg-2 mb-3 order-2 order-sm-1">
-        <h5 class="lh-lg fw-bold mb-4 text-light font-sans-serif">Pelayanan</h5>
-        <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="footer-link" href="#!">Dokter</a></li>
-          <li class="lh-lg"><a class="footer-link" href="#!">Poliklinik</a></li>
-          <li class="lh-lg"><a class="footer-link" href="#!">Jadwal Dokter</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
-        <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Daftar</h5>
-        <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="footer-link" href="#!">Registrasi</a></li>
-          @if (auth()->user())
-          <li class="lh-lg"><a class="footer-link" href="#!">Pendaftaran</a></li>
-          @endif
-        </ul>
-      </div>
-      <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
-        <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Customer Care</h5>
-        <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="footer-link" href="#!">Kontak</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
 
   <!-- ============================================-->
   <!-- <section> begin ============================-->

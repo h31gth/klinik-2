@@ -9,7 +9,12 @@
         <div class="col-lg-6">
             <h3 class="mb-3">Tambah Data Dokter</h3>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nama" name="name">
+            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nama" name="name">
+            @error('name')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="">Poliklinik</label>
@@ -24,10 +29,20 @@
               </select>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="No Hp" name="HP">
+            <input type="text" class="form-control @error('HP') is-invalid @enderror" placeholder="No Hp" name="HP">
+            @error('HP')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="form-group">
-            <textarea class="form-control" name="alamat" placeholder="Alamat" required></textarea>
+            <textarea class="form-control @error('alamat') is-invalid @enderror" name="alamat" placeholder="Alamat"></textarea>
+            @error('alamat')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="form-group">
             <div class="form-group">

@@ -29,6 +29,8 @@
   <!--    Stylesheets-->
   <!-- ===============================================-->
   <link href="{!! asset('assets/css/theme.css') !!}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 

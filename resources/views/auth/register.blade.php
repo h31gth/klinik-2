@@ -36,24 +36,44 @@
                             <form class="user" method="POST" action="{{ url('auth/register') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email"
+                                    <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="exampleInputEmail" name="email"
                                         placeholder="Email Address">
+                                        @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-3 mb-sm-0">
-                                        <input type="password" name="password" class="form-control form-control-user"
+                                        <input type="password" name="password" class="form-control form-control-user @error('password') is-invalid @enderror"
                                             id="exampleInputPassword" placeholder="Password">
+                                            @error('password')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" name="nama"
+                                        <input type="text" class="form-control form-control-user @error('nama') is-invalid @enderror" id="exampleFirstName" name="nama"
                                             placeholder="Nama">
+                                            @error('nama')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="HP"
+                                    <input type="text" class="form-control form-control-user @error('HP') is-invalid @enderror" id="exampleInputEmail" name="HP"
                                         placeholder="No Hp">
+                                        @error('HP')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="date" class="form-control form-control-user" id="exampleInputEmail" name="tgl_lahir">
@@ -78,7 +98,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control form-control-user" name="alamat" placeholder="Alamat" required></textarea>
+                                    <textarea class="form-control form-control-user @error('alamat') is-invalid @enderror" name="alamat" placeholder="Alamat"></textarea>
+                                    @error('alamat')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <button class="btn btn-primary btn-user mr-2 px-4">Register</button>
                                 <a href="{{ url('/') }}" class="btn btn-primary btn-user px-4">Back</a>

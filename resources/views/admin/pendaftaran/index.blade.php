@@ -8,7 +8,17 @@
     <h1 class="h3 mb-2 text-gray-800">Pendaftaran</h1>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a class="btn btn-primary" href="{{ url('admin/pendaftaran/create') }}">Tambah Pendaftaran</a>
+        <div class="row justify-content-between">
+            <div class="col-lg-10">
+                <a class="btn btn-primary" href="{{ url('admin/pendaftaran/create') }}">Tambah Pendaftaran</a>
+            </div>
+            <div class="col-lg-1">
+                <a class="btn btn-danger" href="{{ url('admin/pendaftaran/create') }}">PDF</a>
+            </div>
+            <div class="col-lg-1">
+                <a class="btn btn-success" href="{{ url('admin/pendaftaran/create') }}">Excel</a>
+            </div>
+        </div>
     </div>
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
@@ -40,18 +50,18 @@
                         <td><div class="{{ ($item->status == 'Terdaftar') ? 'badge bg-info text-light' : 'badge bg-success text-light' }}">{{ $item->status }}</div></td>
                         <td>
                               @if($item->status == 'Selesai')
-                              <div class="btn btn-success btn-sm">Sudah Selesai</div>
+                              <div class="btn btn-success btn-sm border-0">Sudah Selesai</div>
                               @else
-                              <form action="{{ url('admin/pendaftaran/'.$item->id) }}" class="d-inline" method="POST">
-                                @method('put')
+                              <form method="POST" class="d-inline" action="{{ url('admin/pendaftaran/'.$item->id) }}">
                                 @csrf
-                                <button class="btn btn-success btn-sm ml-1 border-0 alert_notif" onclick="return confirm('Selesaikan Pendaftaran ?')">Selesai</button>
-                              </form>
-                            <form action="{{ url('admin/pendaftaran/'.$item->id) }}" class="d-inline" method="POST">
-                                @method('delete')
+                                <input name="_method" type="hidden" value="PUT">
+                                <button type="submit" class="btn btn-sm btn-success border-0 edit_confirm" data-toggle="tooltip" title='Delete'>Selesai</button>
+                            </form>
+                              <form method="POST" class="d-inline" action="{{ url('admin/pendaftaran/'.$item->id) }}">
                                 @csrf
-                                <button class="btn btn-danger btn-sm ml-1 border-0 alert_notif" onclick="return confirm('Batalkan Pendaftaran ?')">Batalkan</button>
-                              </form>
+                                <input name="_method" type="hidden" value="DELETE">
+                                <button type="submit" class="btn btn-sm btn-danger border-0 show_confirm" data-toggle="tooltip" title='Delete'>Batalkan</button>
+                            </form>
                               @endif
                         </td>
                     </tr>
@@ -62,6 +72,48 @@
     </div>
 </div>
 </div>
+<script>
+    $('.edit_confirm').click(function(event) {
+         var form =  $(this).closest("form");
+         var name = $(this).data("name");
+         event.preventDefault();
+         swal({
+             title: "Apakah Anda Yakin Pendaftaran Selesai ? ",
+             text: "Jika Selesai Data Akan Berubah",
+             icon: "info",
+             buttons: true,
+             dangerMode: true,
+         })
+         .then((willDelete) => {
+           if (willDelete) {
+             form.submit();
+           }else{
+               swal("Data Tetap Terdaftar");
+           }
+         });
+     });                        
+   </script>
+<script>
+    $('.show_confirm').click(function(event) {
+         var form =  $(this).closest("form");
+         var name = $(this).data("name");
+         event.preventDefault();
+         swal({
+             title: "Apakah Anda Yakin Akan Hapus Data ? ",
+             text: "Jika Dihapus Data Akan Hilang",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+         })
+         .then((willDelete) => {
+           if (willDelete) {
+             form.submit();
+           }else{
+               swal("Data Tidak Jadi dihapus");
+           }
+         });
+     });                        
+   </script>
 <script>
     @if(Session::has('message'))
   swal({
