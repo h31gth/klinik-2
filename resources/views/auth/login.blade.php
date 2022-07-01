@@ -47,10 +47,20 @@
                                     <form class="user" method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" name="email" placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" placeholder="Email Address">
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>Email Salah!</strong>
+                                            </span>
+                                        @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" placeholder="Password">
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>Password Salah!</strong>
+                                            </span>
+                                        @enderror
                                         </div>
                                         <button class="btn btn-primary btn-user mr-2 px-4">Log in</button>
                                         <a href="{{ url('/') }}" class="btn btn-primary btn-user px-4">Back</a>

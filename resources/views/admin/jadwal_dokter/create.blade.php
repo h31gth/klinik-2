@@ -8,7 +8,12 @@
         <div class="col-lg-6">
             <h3 class="mb-3">Tambah Data Jadwal Dokter</h3>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Hari" name="hari">
+            <input type="text" class="form-control @error('hari') is-invalid @enderror" placeholder="Hari" name="hari">
+            @error('hari')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="">Dokter</label>
@@ -24,11 +29,21 @@
         </div>
         <div class="form-group">
             <label for="">Jam Mulai</label>
-            <input type="time" class="form-control" name="jam_mulai">
+            <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror" name="jam_mulai">
+            @error('jam_mulai')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="">Jam Selesai</label>
-            <input type="time" class="form-control" name="jam_selesai">
+            <input type="time" class="form-control @error('jam_selesai') is-invalid @enderror" name="jam_selesai">
+            @error('jam_selesai')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="form-group"><button type="submit" class="btn btn-primary btn-user px-5">Tambah</button></div>
         </div>

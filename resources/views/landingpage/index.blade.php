@@ -13,7 +13,7 @@
           <div class="col-md-75 col-xl-6 col-xxl-5 text-md-start text-center py-6">
             <h1 class="fw-light font-base fs-6 fs-xxl-7">Sistem Informasi <strong>Klinik
               </strong></h1>
-            <p class="fs-1 mb-3">Memberikan kemudahan dalam pendaftaran pasien, melihat jadwal dokter, melihat dokter kami dan melihat poliklinik yang ada di klinik ini.</p><a class="btn btn-lg btn-primary rounded-pill" href="#!" role="button">Lakukan Pendaftaran</a>
+            <p class="fs-1 mb-3">Memberikan kemudahan dalam pendaftaran pasien, melihat antrian, melihat jadwal dokter dan melihat poliklinik yang ada di klinik ini.</p><a class="btn btn-lg btn-primary rounded-pill" href="{{ url('landingpage/pendaftaran') }}" role="button">Lakukan Pendaftaran</a>
           </div>
         </div>
     </section>
@@ -58,53 +58,21 @@
           <div class="col-12 py-3">
             <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/bg-departments.png);background-position:top center;background-size:contain;">
             </div>
-        <h1 class="text-center mt-5">OUR DEPARTMENTS</h1>
+        <h1 class="text-center mt-5">POLIKLINIK</h1>
           </div>
         </div>
-        <div class="row py-5 align-items-center justify-content-center justify-content-lg-evenly mt-4 mb-5">
-          <div class="col-auto col-md-4 col-lg-auto text-xl-start">
+          @foreach ($data as $item)
+          <div class="row py-5 align-items-center justify-content-center justify-content-lg-evenly mt-4 mb-5">
+          <div class="col-auto col-md-6 col-lg-auto text-xl-start">
             <div class="d-flex flex-column align-items-center">
-              <div class="icon-box text-center"><a class="text-decoration-none" href="#!"><img class="mb-3 deparment-icon" src="assets/img/icons/neurology.png" alt="..." /><img class="mb-3 deparment-icon-hover" src="assets/img/icons/neurology.svg" alt="..." />
-                  <p class="fs-1 fs-xxl-2 text-center">Neurology</p>
+              <div class="icon-box text-center"><a class="text-decoration-none" href="#!"><img class="img-fluid" width="200px" src="{{ asset($item->image) }}" alt="..." />
+                  <p class="fs-5 fs-xxl-2 text-primary text-center">{{ $item->nama }}</p>
+                  <p class="fs-2 fs-xxl-2 text-center">{{ $item->deskripsi }}</p>
                 </a></div>
             </div>
-          </div>
-          <div class="col-auto col-md-4 col-lg-auto text-xl-start">
-            <div class="d-flex flex-column align-items-center">
-              <div class="icon-box text-center"><a class="text-decoration-none" href="#!"><img class="mb-3 deparment-icon" src="assets/img/icons/eye-care.png" alt="..." /><img class="mb-3 deparment-icon-hover" src="assets/img/icons/eye-care.svg" alt="..." />
-                  <p class="fs-1 fs-xxl-2 text-center">Eye care</p>
-                </a></div>
-            </div>
-          </div>
-          <div class="col-auto col-md-4 col-lg-auto text-xl-start">
-            <div class="d-flex flex-column align-items-center">
-              <div class="icon-box text-center"><a class="text-decoration-none" href="#!"><img class="mb-3 deparment-icon" src="assets/img/icons/cardiac.png" alt="..." /><img class="mb-3 deparment-icon-hover" src="assets/img/icons/cardiac.svg" alt="..." />
-                  <p class="fs-1 fs-xxl-2 text-center">Cardiac care</p>
-                </a></div>
-            </div>
-          </div>
-          <div class="col-auto col-md-4 col-lg-auto text-xl-start">
-            <div class="d-flex flex-column align-items-center">
-              <div class="icon-box text-center"><a class="text-decoration-none" href="#!"><img class="mb-3 deparment-icon" src="assets/img/icons/heart.png" alt="..." /><img class="mb-3 deparment-icon-hover" src="assets/img/icons/heart.svg" alt="..." />
-                  <p class="fs-1 fs-xxl-2 text-center">Heart care</p>
-                </a></div>
-            </div>
-          </div>
-          <div class="col-auto col-md-4 col-lg-auto text-xl-start">
-            <div class="d-flex flex-column align-items-center">
-              <div class="icon-box text-center"><a class="text-decoration-none" href="#!"><img class="mb-3 deparment-icon" src="assets/img/icons/osteoporosis.png" alt="..." /><img class="mb-3 deparment-icon-hover" src="assets/img/icons/osteoporosis.svg" alt="..." />
-                  <p class="fs-1 fs-xxl-2 text-center">Osteoporosis</p>
-                </a></div>
-            </div>
-          </div>
-          <div class="col-auto col-md-4 col-lg-auto text-xl-start">
-            <div class="d-flex flex-column align-items-center">
-              <div class="icon-box text-center"><a class="text-decoration-none" href="#!"><img class="mb-3 deparment-icon" src="assets/img/icons/ent.png" alt="..." /><img class="mb-3 deparment-icon-hover" src="assets/img/icons/ent.svg" alt="..." />
-                  <p class="fs-1 fs-xxl-2 text-center">ENT</p>
-                </a></div>
-            </div>
-          </div>
+          </div> 
         </div>
+          @endforeach
         @include('landingpage.partials.banner')
       </div>
     </section>

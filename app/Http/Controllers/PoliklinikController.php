@@ -140,6 +140,6 @@ class PoliklinikController extends Controller
     public function tampilpoli()
     {
         $data = Poliklinik::get();
-        return view('landingpage.poliklinik.index',compact('data'));
+        return view('landingpage.index',compact('data'));
     }
 }

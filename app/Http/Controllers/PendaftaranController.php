@@ -37,8 +37,9 @@ class PendaftaranController extends Controller
     {
         $pasien = Pasien::get();
         $mytime = Carbon::now('Asia/Jakarta');
-        $jadwal = JadwalDokter::select('jadwal_dokters.*','dokter.name AS dokter')
+        $jadwal = JadwalDokter::select('jadwal_dokters.*','dokter.name AS dokter','poliklinik.nama AS poli')
         ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
+        ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
         ->where('hari',$mytime->isoFormat('dddd'))
         ->where('jam_selesai',">", $mytime->isoFormat('H:m:s'))->get();
         return view('admin.pendaftaran.create',compact('pasien','jadwal'));   
@@ -113,11 +114,14 @@ class PendaftaranController extends Controller
      * @param  \App\Models\Pendaftaran  $pendaftaran
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pendaftaran $pendaftaran)
+    public function destroy($id)
     {
-        //
+        $data = Pendaftaran::findOrFail($id);
+        $data->delete();
+        return redirect('admin/pendaftaran')->with('message','Data Berhasil Dihapus!');
     }
 
+    // Antrian Landing Page
     public function antrian(){
         $data = Pendaftaran::select('pendaftaran.id AS id','jadwal_dokters.jam_mulai AS jam_mulai','jadwal_dokters.jam_selesai AS jam_selesai','dokter.name AS dokter','pendaftaran.no_antrian AS no_antrian','poliklinik.id AS id_poli','poliklinik.nama AS nama_poli','dokter.poli_id','pendaftaran.tgl_pendaftaran AS tgl_pendaftaran','jadwal_dokters.hari AS hari','pendaftaran.status AS status')
         ->join('jadwal_dokters','jadwal_dokters.id','=','pendaftaran.jadwal_dokter_id')
@@ -126,10 +130,10 @@ class PendaftaranController extends Controller
         ->where('pendaftaran.status','Terdaftar')
         ->where('pendaftaran.tgl_pendaftaran',date('Y-m-d'))
         ->get();
-        
         return view('landingpage.pendaftaran.antrian',compact('data'));
     }
 
+    // Store Landing Page
     public function daftarpasien(Request $request){
         $id_jadwal = $request->jadwal_dokter;
         $no_antrian = Pendaftaran::generateNoAntrian($id_jadwal,date('Y-m-d'));
@@ -144,5 +148,56 @@ class PendaftaranController extends Controller
             'status' => "Terdaftar"
         ]);
         return redirect('landingpage/pendaftaran')->with('message', 'Pendaftaran Berhasil');
+    }
+
+    // Create Landing Page
+    public function listdaftar()
+    {
+        $pasien = Pasien::select('pasien.*')
+        ->where('user_id',Auth::id())
+        ->first();
+        $mytime = Carbon::now('Asia/Jakarta');
+        $data = JadwalDokter::select('jadwal_dokters.*','dokter.name AS dokter','poliklinik.nama AS poli','poliklinik.image AS image_poli')
+        ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
+        ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
+        ->where('hari',$mytime->isoFormat('dddd'))
+        ->where('jam_selesai',">", $mytime->isoFormat('H:m:s'))->get();
+        return view('landingpage.pendaftaran.create',compact('pasien','data'));   
+    }
+
+    // Index Landing Page
+    public function daftartampil()
+    {
+        $data = Pendaftaran::select('pendaftaran.*','dokter.name AS dokter','poliklinik.nama AS poli','users.id AS id_user')
+        ->join('jadwal_dokters','jadwal_dokters.id','=','pendaftaran.jadwal_dokter_id')
+        ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
+        ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
+        ->join('pasien','pasien.id','=','pendaftaran.pasien_id')
+        ->join('users','users.id','=','pasien.user_id')
+        ->where('users.id',auth()->user()->id)
+        ->get();
+        return view('landingpage.pendaftaran.daftar',compact('data'));
+    }
+
+    // Delete Daftar landing page
+    public function hapus_daftar($id)
+    {
+        $data = Pendaftaran::findOrFail($id);
+        $data->delete();
+        return redirect('landingpage/pendaftaran/')->with('message','Data Berhasil Dihapus!');
+    }
+
+    public function showdaftar($id)
+    {
+        $data = Pendaftaran::select('pendaftaran.*','dokter.name AS dokter','poliklinik.nama AS poli','users.id AS id_user','pasien.id AS id_pasien','pasien.nama AS pasien','poliklinik.image AS image_poli','dokter.image AS image_dokter','jadwal_dokters.jam_mulai','jadwal_dokters.jam_selesai')
+        ->join('jadwal_dokters','jadwal_dokters.id','=','pendaftaran.jadwal_dokter_id')
+        ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
+        ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
+        ->join('pasien','pasien.id','=','pendaftaran.pasien_id')
+        ->join('users','users.id','=','pasien.user_id')
+        ->where('pendaftaran.id',$id)
+        ->where('users.id',auth()->user()->id)
+        ->get();
+        return view('landingpage.pendaftaran.show',compact('data'));
     }
 }

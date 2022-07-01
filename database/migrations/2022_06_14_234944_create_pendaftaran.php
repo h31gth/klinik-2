@@ -23,9 +23,9 @@ class CreatePendaftaran extends Migration
             $table->string('status');
             $table->timestamps();
 
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->foreign('pasien_id')->references('id')->on('pasien');
-            $table->foreign('jadwal_dokter_id')->references('id')->on('jadwal_dokters');
+            $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('pasien_id')->references('id')->on('pasien')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('jadwal_dokter_id')->references('id')->on('jadwal_dokters')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
