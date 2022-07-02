@@ -41,7 +41,9 @@ class PendaftaranController extends Controller
         ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
         ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
         ->where('hari',$mytime->isoFormat('dddd'))
-        ->where('jam_selesai',">", $mytime->isoFormat('H:m:s'))->get();
+        ->where('jam_mulai',"<", $mytime->isoFormat('H:m:s'))
+        ->where('jam_selesai',">", $mytime->isoFormat('H:m:s'))
+        ->get();
         return view('admin.pendaftaran.create',compact('pasien','jadwal'));   
     }
 
@@ -156,12 +158,16 @@ class PendaftaranController extends Controller
         $pasien = Pasien::select('pasien.*')
         ->where('user_id',Auth::id())
         ->first();
+
         $mytime = Carbon::now('Asia/Jakarta');
+
         $data = JadwalDokter::select('jadwal_dokters.*','dokter.name AS dokter','poliklinik.nama AS poli','poliklinik.image AS image_poli')
         ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
         ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
         ->where('hari',$mytime->isoFormat('dddd'))
-        ->where('jam_selesai',">", $mytime->isoFormat('H:m:s'))->get();
+        ->where('jam_mulai',"<", $mytime->isoFormat('H:m:s'))
+        ->where('jam_selesai',">", $mytime->isoFormat('H:m:s'))
+        ->get();
         return view('landingpage.pendaftaran.create',compact('pasien','data'));   
     }
 

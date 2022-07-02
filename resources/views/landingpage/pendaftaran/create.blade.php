@@ -18,18 +18,13 @@
             <div class="col-lg-8">
                 <div class="row">
                     @foreach ($data as $item)
-                    <div class="col-lg-3">
-                    <div class="card mb-3">
-                        <img src="{{ asset($item->image_poli) }}" class="card-img-top img-fluid">
+                    <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <img src="{{ asset($item->image_poli) }}" class="card-img-top" width="150px" height="150px" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->poli }}</h5>
-                            <p class="card-text">{{ $item->dokter }}</p>
+                            <h5 class="card-text">{{ $item->dokter }}</h5>
                           </div>
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ $item->hari }}</li>
-                            <li class="list-group-item">{{ $item->jam_mulai }}</li>
-                            <li class="list-group-item">{{ $item->jam_selesai }}</li>
-                          </ul>
                           <div class="card-body">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <form class="user" method="POST" action="{{ url('landingpage/pendaftaran') }}">

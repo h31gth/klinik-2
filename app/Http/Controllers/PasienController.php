@@ -44,7 +44,7 @@ class PasienController extends Controller
             'HP' => 'required',
             'tgl_lahir' => 'required',
             'jk' => 'required',
-            'email' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:5|max:255'
         ]);
 
@@ -108,17 +108,7 @@ class PasienController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'alamat' => 'required',
-            'HP' => 'required',
-            'tgl_lahir' => 'required',
-            'jk' => 'required',
-            'email' => 'required|unique:users',
-            'password' => 'required|min:5|max:255'
-        ]);
-        
+    {   
         $pasien = Pasien::findOrFail($id);
         $user = User::findOrFail($pasien->user_id);
         //
@@ -176,7 +166,7 @@ class PasienController extends Controller
             'HP' => 'required',
             'tgl_lahir' => 'required',
             'jk' => 'required',
-            'email' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:5|max:255'
         ]);
 
