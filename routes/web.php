@@ -9,6 +9,8 @@ use App\Http\Controllers\JadwalDokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PoliklinikController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +53,8 @@ Route::group(['middleware' => ['role:Admin']],function () {
         Route::resource('/jadwal_dokter',JadwalDokterController::class);
         Route::resource('/pasien', PasienController::class);
         Route::resource('/pendaftaran', PendaftaranController::class);
+        Route::resource('/user', UserController::class);
+        Route::resource('/role', RoleController::class);
     });
 });
 
-Route::resource('/admin/user', UserController::class)->middleware('role:Admin');

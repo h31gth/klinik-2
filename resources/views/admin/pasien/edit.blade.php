@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <form method="POST" action="{{ url('admin/pasien/'.$pasien->id) }}">
+    <form class="user" method="POST" action="{{ url('admin/pasien/'.$pasien->id) }}">
         @method('PUT')
         @csrf
         <div class="col-lg-6">

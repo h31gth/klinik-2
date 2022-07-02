@@ -27,9 +27,9 @@
                 <select class="form-control text-center" name="jadwal_dokter">
                     @foreach($jadwal as $j)
                     @if(old('jadwal') == $j->id)
-                    <option value="{{ $j->id }}" selected>{{ $j->dokter }} [{{ $j->jam_mulai }} - {{ $j->jam_selesai }}]</option>   
+                    <option value="{{ $j->id }}" selected>{{ $j->dokter }} - {{ $j->poli }}</option>   
                     @else
-                    <option value="{{ $j->id }}">{{ $j->dokter }} [{{ $j->jam_mulai }} - {{ $j->jam_selesai }}]</option>  
+                    <option value="{{ $j->id }}">{{ $j->dokter }} - {{ $j->poli }}</option>  
                     @endif
                     @endforeach
                   </select>

@@ -114,7 +114,7 @@ class DokterController extends Controller
             'HP' => 'required',
             'alamat' => 'required',
             'jk' => 'required',
-            'poliklinik' => 'require',
+            'poliklinik' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
                 $dokter = Dokter::findOrFail($id);
