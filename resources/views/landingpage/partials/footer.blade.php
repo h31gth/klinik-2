@@ -2,7 +2,29 @@
   <div class="bg-holder opacity-25" style="background-image:url({!! asset('assets/assets/img/gallery/dot-bg.png') !!});background-position:top left;margin-top:-3.125rem;background-size:auto;">
   </div>
   <!--/.bg-holder-->
-
+  <div class="container">
+    <div class="row pt-8">
+      <div class="col-12 col-sm-12 col-lg-6 mb-4 order-0 order-sm-0"><img class="img-fluid" width="150px" src="{{ asset('images/Logo.png') }}" alt="">
+        <p class="text-light">Klinik <br />telehealth company.</p>
+      </div>
+      <div class="col-6 col-sm-4 col-lg-2 mb-3 order-2 order-sm-1">
+      </div>
+      <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+        <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Membership</h5>
+        <ul class="list-unstyled mb-md-4 mb-lg-0">
+          <li class="lh-lg"><a class="footer-link" href="{{ url('/register') }}">Registrasi Akun</a></li>
+          <li class="lh-lg"><a class="footer-link" href="{{ url('landingpage/pendaftaran') }}">Pendaftaran Antrian</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+        <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Informasi</h5>
+        <ul class="list-unstyled mb-md-4 mb-lg-0">
+          <li class="lh-lg"><a class="footer-link" href="{{ url('landingpage/jadwal_dokter') }}">Jadwal Dokter</a></li>
+          <li class="lh-lg"><a class="footer-link" href="{{ url('landingpage/antrian') }}">Antrian</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <!-- ============================================-->
   <!-- <section> begin ============================-->

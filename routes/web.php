@@ -40,12 +40,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/landingpage/pendaftaran/show/{id}',[PendaftaranController::class,'showdaftar']);
     Route::get('/landingpage/pendaftaran/create',[PendaftaranController::class,'listdaftar']);
     Route::post('/landingpage/pendaftaran',[PendaftaranController::class,'daftarpasien']);
-    Route::get('/landingpage/pendaftaran/{id}',[PendaftaranController::class, 'hapus_daftar']);
+    Route::delete('/landingpage/pendaftaran/{id}',[PendaftaranController::class, 'hapus_daftar']);
 });
 
 Route::get('/logout',[LoginController::class,'logout']);
 
-Route::group(['middleware' => ['role:Admin']],function () {
+Route::group(['middleware' => ['role:Admin|Pegawai']],function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
         Route::resource('/dokter', DokterController::class);
@@ -53,8 +53,8 @@ Route::group(['middleware' => ['role:Admin']],function () {
         Route::resource('/jadwal_dokter',JadwalDokterController::class);
         Route::resource('/pasien', PasienController::class);
         Route::resource('/pendaftaran', PendaftaranController::class);
-        Route::resource('/user', UserController::class);
-        Route::resource('/role', RoleController::class);
     });
 });
 
+Route::resource('/admin/user', UserController::class)->middleware('role:Admin');
+Route::resource('/admin/role', RoleController::class)->middleware('role:Admin');
