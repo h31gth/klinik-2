@@ -45,11 +45,15 @@
                             <td>{{ $item->tgl_pendaftaran }}</td>
                             <td><span class="{{ ($item->status == 'Terdaftar') ? 'badge bg-info rounded-pill text-light' : 'badge bg-success rounded-pill text-light' }}">{{ $item->status }}</span></td>
                             <td>
-                                <a class="btn btn-info rounded-pill btn-sm me-2" href="{{ url('landingpage/pendaftaran/show/'.$item->id) }}">Detail</a>
                                 @if($item->status == 'Selesai')
                                     <div class="btn btn-success rounded-pill btn-sm">Sudah Selesai</div>
                                 @else
-                                <a href="#" class="btn btn-danger rounded-pill btn-sm circle modal-delete" data-id="{{ $item->id  }}" data-judul="{{ $item->no_antrian }}">Batalkan</a>
+                                <form method="POST" class="d-inline" action="{{ url('landingpage/pendaftaran/'.$item->id) }}">
+                                    @csrf
+                                    <a class="btn btn-info rounded-pill btn-sm me-2" href="{{ url('landingpage/pendaftaran/show/'.$item->id) }}">Detail</a>
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <button type="submit" class="btn btn-danger rounded-pill btn-sm show_confirm" data-toggle="tooltip" title='Delete'>Batalkan</button>
+                                </form>
                                   @endif
                             </td>
                         </tr>
@@ -72,25 +76,26 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script>
-      $('.modal-delete').click( function(){
-                  var judulid = $(this).attr('data-id');
-                  var judul_data = $(this).attr('data-judul');
-                  swal({
-                      title: "Yakin?",
-                      text: "Anda Akan Membatalkan Pendaftaran Pada Antrian ke - "+judul_data+"",
-                      icon: "warning",
-                      buttons: true,
-                      dangerMode: true,
-                      })
-                      .then((willDelete) => {
-                      if (willDelete) {
-                          window.location = "/landingpage/pendaftaran/"+judulid
-                      } else {
-                          swal("Data Tidak Jadi dihapus");
-                      }
-                      });
-              })                         
-          </script>
+        $('.show_confirm').click(function(event) {
+             var form =  $(this).closest("form");
+             var name = $(this).data("name");
+             event.preventDefault();
+             swal({
+                 title: "Apakah Anda Yakin Akan Hapus Data ? ",
+                 text: "Jika Dihapus Data Akan Hilang",
+                 icon: "warning",
+                 buttons: true,
+                 dangerMode: true,
+             })
+             .then((willDelete) => {
+               if (willDelete) {
+                 form.submit();
+               }else{
+                   swal("Data Tidak Jadi dihapus");
+               }
+             });
+         });                        
+       </script>
     <script>
 $(document).ready(function () {
   $('#dataTable').DataTable();

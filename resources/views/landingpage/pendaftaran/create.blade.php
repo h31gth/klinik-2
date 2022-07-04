@@ -22,8 +22,8 @@
                     <div class="card mb-4">
                         <img src="{{ asset($item->image_poli) }}" class="card-img-top" width="150px" height="150px" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $item->poli }}</h5>
-                            <h5 class="card-text">{{ $item->dokter }}</h5>
+                            <h5 class="card-title">Poliklinik :  {{ $item->poli }}</h5>
+                            <h5 class="card-text">Dokter : {{ $item->dokter }}</h5>
                           </div>
                           <div class="card-body">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">

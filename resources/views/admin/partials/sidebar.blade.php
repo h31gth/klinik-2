@@ -63,24 +63,30 @@
             <span>Jadwal Dokter</span></a>
     </li>
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
 
+        @role('Admin')
+        <hr class="sidebar-divider d-none d-md-block">
             <!-- Heading -->
             <div class="sidebar-heading">
                 Manajemen User
             </div>
-    
+        @else
+        @endrole
+        @can('user-list')
         <li class="nav-item {{ Request::is('admin/user*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ url('admin/user') }}">
                 <i class="fas fa-user-cog"></i>
                 <span>User</span></a>
         </li>
+        @endcan
+        @can('role-list')
         <!-- Nav Item - Tables -->
         <li class="nav-item {{ Request::is('admin/role*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ url('admin/role') }}">
                 <i class="fas fa-user-tag"></i>
                 <span>Role</span></a>
         </li>
+        @endcan
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

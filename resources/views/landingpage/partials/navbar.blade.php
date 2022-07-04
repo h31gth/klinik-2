@@ -12,15 +12,8 @@
             <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/pendaftaran') }}">Pendaftaran</a></li>
             <li class="nav-item px-2"><a class="nav-link" href="{{ url('landingpage/jadwal_dokter') }}">Jadwal Dokter</a></li>
           @if (auth()->user())
-          <li class="nav-item dropdown px-2">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ (auth()->user()->name) }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
-            </ul>
-          </li>
         </ul>
+        <a class="btn btn-sm btn-outline-primary rounded-pill order-1 order-lg-0 ms-lg-2" href="{{ url('/logout') }}">Logout</a>
           @else
           <a class="btn btn-sm btn-outline-primary rounded-pill order-1 order-lg-0 ms-lg-4" href="{{ url('login') }}">Login</a>
           <a class="btn btn-sm btn-outline-primary rounded-pill order-1 order-lg-0 ms-lg-2" href="{{ url('register') }}">Registrasi</a>

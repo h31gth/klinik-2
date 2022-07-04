@@ -43,6 +43,7 @@ class PermissionSeeder extends Seeder
             'jadwal-praktek-create',
             'jadwal-praktek-edit',
             'jadwal-praktek-delete',
+            'dashboard'
         ];
 
         foreach ($permissions as $permission) {

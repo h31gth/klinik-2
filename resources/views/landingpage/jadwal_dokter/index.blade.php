@@ -19,7 +19,7 @@
             <div class="card-text">Hari : {{ $item->hari }}</div>
             <div class="card-text">Jam Mulai : {{ $item->jam_mulai }}</div>
             <div class="card-text">Jam Selesai : {{ $item->jam_selesai }}</div>
-            <div class="d-flex justify-content-end"><a class="btn btn-primary rounded-pill btn-sm mt-3" href="">Detail</a></div>
+            {{-- <div class="d-flex justify-content-end"><a class="btn btn-primary rounded-pill btn-sm mt-3" href="">Detail</a></div> --}}
           </div>
         </div>
         </div>

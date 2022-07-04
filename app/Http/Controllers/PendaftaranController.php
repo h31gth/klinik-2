@@ -195,7 +195,7 @@ class PendaftaranController extends Controller
 
     public function showdaftar($id)
     {
-        $data = Pendaftaran::select('pendaftaran.*','dokter.name AS dokter','poliklinik.nama AS poli','users.id AS id_user','pasien.id AS id_pasien','pasien.nama AS pasien','poliklinik.image AS image_poli','dokter.image AS image_dokter','jadwal_dokters.jam_mulai','jadwal_dokters.jam_selesai')
+        $data = Pendaftaran::select('pendaftaran.*','dokter.name AS dokter','poliklinik.nama AS poli','poliklinik.deskripsi','users.id AS id_user','pasien.id AS id_pasien','pasien.nama AS pasien','poliklinik.image AS image_poli','dokter.image AS image_dokter','jadwal_dokters.jam_mulai','jadwal_dokters.jam_selesai')
         ->join('jadwal_dokters','jadwal_dokters.id','=','pendaftaran.jadwal_dokter_id')
         ->join('dokter','dokter.id','=','jadwal_dokters.dokter_id')
         ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
@@ -203,7 +203,7 @@ class PendaftaranController extends Controller
         ->join('users','users.id','=','pasien.user_id')
         ->where('pendaftaran.id',$id)
         ->where('users.id',auth()->user()->id)
-        ->get();
+        ->first();
         return view('landingpage.pendaftaran.show',compact('data'));
     }
 }
