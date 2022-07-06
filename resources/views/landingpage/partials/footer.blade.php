@@ -1,19 +1,46 @@
-<section class="py-0 bg-secondary">
-  <div class="bg-holder opacity-25" style="background-image:url({!! asset('assets/assets/img/gallery/dot-bg.png') !!});background-position:top left;margin-top:-3.125rem;background-size:auto;">
-  </div>
+  <section class="bg-primary">
+    <div class="bg-holder bg-size" style="background-image:url{{ asset('assets/img/gallery/cta-bg.png') }};background-position:center right;background-size:contain;">
+    </div>
   <!--/.bg-holder-->
   <div class="container">
-    <div class="row pt-8">
-      <div class="col-12 col-sm-12 col-lg-6 mb-4 order-0 order-sm-0"><img class="img-fluid" width="150px" src="{{ asset('images/Logo.png') }}" alt="">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="fw-bold text-light">Get an update every week</h2>
+        <p class="text-soft-primary">Livedoc was created in order to improve the patient experience. <br />Providing world-class tests, and a wide range of other services.</p>
+      </div>
+      <div class="col-lg-6">
+        <h5 class="mb-3 text-soft-primary">SUBSCRIBE TO NEWSLETTER </h5>
+        <form class="row gx-2 gy-2 align-items-center">
+          <div class="col">
+            <div class="input-group-icon">
+              <label class="visually-hidden" for="inputEmailCta">Address</label>
+              <input class="form-control form-livedoc-control form-cta-control text-soft-primary" id="inputEmailCta" type="email" placeholder="Email" />
+            </div>
+          </div>
+          <div class="d-grid gap-3 col-sm-auto">
+            <button class="btn btn-lg btn-light rounded-3 px-5 py-3" type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section class="py-0 bg-secondary">
+    <div class="bg-holder opacity-25" style="background-image:url{{ asset('assets/img/gallery/dot-bg.png') }};background-position:top left;margin-top:-3.125rem;background-size:auto;">
+    </div>
+    <!--/.bg-holder-->
+  <div class="container">
+    <div class="row py-7">
+      <div class="col-12 col-sm-12 col-lg-6 order-0 order-sm-0"><img class="img-fluid mb-4" height="51px" src="{{ asset('assets/img/gallery/footer-logo.png') }}" alt="">
         <p class="text-light">Klinik <br />telehealth company.</p>
       </div>
       <div class="col-6 col-sm-4 col-lg-2 mb-3 order-2 order-sm-1">
       </div>
       <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
-        <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Membership</h5>
+        <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">User</h5>
         <ul class="list-unstyled mb-md-4 mb-lg-0">
           <li class="lh-lg"><a class="footer-link" href="{{ url('/register') }}">Registrasi Akun</a></li>
-          <li class="lh-lg"><a class="footer-link" href="{{ url('landingpage/pendaftaran') }}">Pendaftaran Antrian</a></li>
+          <li class="lh-lg"><a class="footer-link" href="{{ url('/login') }}">Login</a></li>
         </ul>
       </div>
       <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
