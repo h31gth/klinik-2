@@ -168,10 +168,5 @@ class DokterController extends Controller
 
     public function tampildokter()
     {
-        $data = Dokter::select('dokter.*','poliklinik.nama AS poli')
-        ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
-        ->orderBy('dokter.id','desc')
-        ->get();
-        return view('landingpage.dokter.index', compact('data'));
     }
 }

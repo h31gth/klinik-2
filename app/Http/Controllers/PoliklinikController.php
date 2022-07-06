@@ -139,7 +139,11 @@ class PoliklinikController extends Controller
 
     public function tampilpoli()
     {
+        $dokter = Dokter::select('dokter.*','poliklinik.nama AS poli')
+        ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
+        ->orderBy('dokter.id','desc')
+        ->get();
         $data = Poliklinik::get();
-        return view('landingpage.index',compact('data'));
+        return view('landingpage.index',compact('data','dokter'));
     }
 }

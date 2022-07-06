@@ -55,25 +55,62 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-12 py-3">
-            <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/bg-departments.png);background-position:top center;background-size:contain;">
+          <div class="col-12 pt-3">
+            <div class="bg-holder bg-size" style="background-image:url{{ asset('assets/img/gallery/blog-post.png') }};background-position:top center;background-size:contain;">
             </div>
-        <h1 class="text-center mt-5">POLIKLINIK</h1>
+            <!--/.bg-holder-->
+            <h1 class="text-center">POLIKLINIK</h1>
           </div>
         </div>
+      </div>
+      <!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+    <section>
+      <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/dot-bg.png);background-position:top left;background-size:auto;">
+      </div>
+      <!--/.bg-holder-->
+
+      <div class="container">
+        <div class="row">
           @foreach ($data as $item)
-          <div class="row py-5 align-items-center justify-content-center justify-content-lg-evenly mt-4 mb-5">
-          <div class="col-auto col-md-6 col-lg-auto text-xl-start">
-            <div class="d-flex flex-column align-items-center">
-              <div class="icon-box text-center"><a class="text-decoration-none" href="#!"><img class="img-fluid" width="200px" src="{{ asset($item->image) }}" alt="..." />
-                  <p class="fs-5 fs-xxl-2 text-primary text-center">{{ $item->nama }}</p>
-                  <p class="fs-2 fs-xxl-2 text-center">{{ $item->deskripsi }}</p>
-                </a></div>
+          <div class="col-sm-6 col-lg-3 mb-4">
+            <div class="card h-100 shadow card-span rounded-3"><img class="card-img-top rounded-top-3 img-thumbnail" src="{{ asset($item->image) }}" style="max-width: 260px; max-height:150px" alt="news" />
+              <div class="card-body">
+                <h5 class="font-base fs-lg-0 fs-xl-1 mt-2">{{ $item->nama }}</h5>
+                <div class="div">{{ $item->deskripsi }}</div>
+              </div>
             </div>
-          </div> 
-        </div>
+          </div>
           @endforeach
-        @include('landingpage.partials.banner')
+        </div>
       </div>
     </section>
+
+    <section class="py-xxl-10 pb-0" id="home">
+      <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/dot-bg.png);background-position:top left;background-size:auto;">
+      </div>
+    
+        <div class="container">
+              <h1 class="text-center">DOKTER</h1>
+                    <div class="row h-100 m-lg-7 mx-3 mt-6 mx-md-4 my-md-7">
+                      @foreach ($dokter as $item)
+                      <div class="col-md-4 mb-md-5">
+                        <div class="card card-span h-100 shadow">
+                          <div class="card-body d-flex flex-column flex-center py-5"><img src="{{ asset($item->image) }}" style="max-width: 150px; max-height:150px" class="img-fluid" alt="..." />
+                            <h5 class="mt-3">{{ $item->name }}</h5>
+                            <p class="mb-0 fs-xxl-1 mb-1">{{ $item->poli }}</p>
+                            <p class="text-600 mb-0 mb-2">{{ $item->alamat }}</p>
+                          </div>
+                        </div>
+                      </div>
+                      @endforeach
+                    </div>
+          @include('landingpage.partials.banner')
+        </div>
+      </section>
       @endsection
