@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Dashboard</h1>
+<h1 class="h3 mb-2 text-gray-800">Data Klinik</h1>
                     <!-- Content Row -->
                     <div class="row">
 
@@ -76,5 +76,69 @@
                                 </div>
                             </div>
                         </div>
+                </div>
+                <br>
+                <h1 class="h3 mb-2 text-gray-800">Data Covid 19 Jawa Barat</h1>
+                <div class="row">
+                    @foreach ($data->list_data as $item)
+                    @if ($item->key == 'JAWA BARAT')
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-secondary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                            Total Kasus</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($item->jumlah_kasus,0,',','.') }} orang</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-male fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                @endforeach
+                @foreach ($data->list_data as $item)
+                @if ($item->key == 'JAWA BARAT')
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Sembuh</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($item->jumlah_sembuh,0,',','.') }} orang</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-check fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
+                        @foreach ($data->list_data as $item)
+                        @if ($item->key == 'JAWA BARAT')
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Total Kematian</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($item->jumlah_meninggal,0,',','.') }} orang</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-alt-slash fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
                 </div>
 @endsection

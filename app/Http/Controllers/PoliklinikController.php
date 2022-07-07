@@ -6,6 +6,7 @@ use App\Models\Dokter;
 use App\Models\Poliklinik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 
 class PoliklinikController extends Controller
 {
@@ -139,7 +140,13 @@ class PoliklinikController extends Controller
 
     public function tampilpoli()
     {
+        $dokter = Dokter::select('dokter.*','poliklinik.nama AS poli')
+        ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
+        ->orderBy('dokter.id','desc')
+        ->get();
+        $response = Http::get('https://data.covid19.go.id/public/api/prov.json');
+        $covid = json_decode($response);
         $data = Poliklinik::get();
-        return view('landingpage.index',compact('data'));
+        return view('landingpage.index',compact('data','dokter','covid'));
     }
 }

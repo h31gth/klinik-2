@@ -31,6 +31,10 @@ Route::get('/landingpage/jadwal_dokter', [JadwalDokterController::class, 'tampil
 
 Route::get('/landingpage/antrian',[PendaftaranController::class, 'antrian']);
 
+Route::get('landingpage/contact', function(){
+    return view('landingpage/contact');
+});
+
 Route::post('/auth/register', [PasienController::class,'createpasien']);
 
 Auth::routes();
