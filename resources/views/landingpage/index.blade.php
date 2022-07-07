@@ -13,16 +13,22 @@
           <div class="col-md-75 col-xl-6 col-xxl-5 text-md-start text-center py-6">
             <h1 class="fw-light font-base fs-6 fs-xxl-8">Sistem Informasi <strong>Klinik
               </strong></h1>
-              <h3>Informasi COVID 19 Kuningan</h3>
-              @foreach ($covid as $item)
-                  <div>Total Terkonfirmasi : {{ $item['total_terkonfirmasi'] }} orang</div>
-              @endforeach
-              @foreach ($covid as $item)
-              <div>Total Sembuh : {{ $item['total_sembuh'] }} orang</div>
+              <h3>Informasi COVID 19 Jawa Barat</h3>
+              @foreach ($covid->list_data as $item)
+              @if ($item->key == 'JAWA BARAT')
+              <div>Total Kasus : {{ number_format($item->jumlah_kasus,0,',','.') }} orang</div>
+              @endif
           @endforeach
-          @foreach ($covid as $item)
-          <div>Total Kematian : {{ $item['total_meninggal'] }} orang</div>
-      @endforeach
+              @foreach ($covid->list_data as $item)
+              @if ($item->key == 'JAWA BARAT')
+              <div>Total Sembuh : {{ number_format($item->jumlah_sembuh,0,',','.') }} orang</div>
+              @endif
+          @endforeach
+              @foreach ($covid->list_data as $item)
+              @if ($item->key == 'JAWA BARAT')
+              <div>Total Kematian : {{ number_format($item->jumlah_meninggal,0,',','.') }} orang</div>
+              @endif
+          @endforeach
               <a class="btn btn-lg btn-primary rounded-pill mt-2" href="{{ url('landingpage/pendaftaran') }}" role="button">Lakukan Pendaftaran</a>
           </div>
         </div>
@@ -37,7 +43,7 @@
             </div>
             <!--/.bg-holder-->
 
-            <h1 class="text-center">ABOUT US</h1>
+            <h1 class="text-center">TENTANG KAMI</h1>
           </div>
         </div>
       </div>

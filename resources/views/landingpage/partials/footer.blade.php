@@ -13,7 +13,26 @@
           <div class="col">
             <div class="input-group-icon">
               <label class="visually-hidden" for="inputEmailCta">Feedback</label>
-              <input class="form-control form-livedoc-control form-cta-control text-soft-primary" id="inputEmailCta" type="email" placeholder="FeedBack" />
+              <div class="form-check form-check-inline">
+                <input class="form-check-input bg-info" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Bintang 1">
+                <label class="form-check-label" for="inlineRadio1"><i class="fas fa-star"></i></label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input bg-info" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Bintang 2">
+                <label class="form-check-label" for="inlineRadio1"><i class="fas fa-star"></i><i class="fas fa-star"></i></label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input bg-info" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Bintang 3">
+                <label class="form-check-label" for="inlineRadio1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input bg-info" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Bintang 4">
+                <label class="form-check-label" for="inlineRadio1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input bg-info" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Bintang 5">
+                <label class="form-check-label" for="inlineRadio1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></label>
+              </div>
             </div>
           </div>
           <div class="d-grid gap-3 col-sm-auto">
@@ -30,8 +49,8 @@
     <!--/.bg-holder-->
   <div class="container">
     <div class="row py-7">
-      <div class="col-12 col-sm-12 col-lg-6 order-0 order-sm-0"><img class="img-fluid mb-4" height="51px" src="{{ asset('assets/img/gallery/footer-logo.png') }}" alt="">
-        <p class="text-light">Klinik <br />telehealth company.</p>
+      <div class="col-12 col-sm-12 col-lg-6 order-0 order-sm-0"><h2 class="text-light">KLINIK</h2>
+        <p class="text-light">Siap Melayani Anda</p>
       </div>
       <div class="col-6 col-sm-4 col-lg-2 mb-3 order-2 order-sm-1">
         <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Pesan & Kesan</h5>
