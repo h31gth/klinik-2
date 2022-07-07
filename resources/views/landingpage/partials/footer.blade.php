@@ -5,20 +5,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <h2 class="fw-bold text-light">Get an update every week</h2>
-        <p class="text-soft-primary">Livedoc was created in order to improve the patient experience. <br />Providing world-class tests, and a wide range of other services.</p>
+        <h2 class="fw-bold text-light pt-4">Dapatkan Update Setiap Hari</h2>
       </div>
       <div class="col-lg-6">
-        <h5 class="mb-3 text-soft-primary">SUBSCRIBE TO NEWSLETTER </h5>
+        <h5 class="mb-3 text-soft-primary">Kirim FeedBack</h5>
         <form class="row gx-2 gy-2 align-items-center">
           <div class="col">
             <div class="input-group-icon">
-              <label class="visually-hidden" for="inputEmailCta">Address</label>
-              <input class="form-control form-livedoc-control form-cta-control text-soft-primary" id="inputEmailCta" type="email" placeholder="Email" />
+              <label class="visually-hidden" for="inputEmailCta">Feedback</label>
+              <input class="form-control form-livedoc-control form-cta-control text-soft-primary" id="inputEmailCta" type="email" placeholder="FeedBack" />
             </div>
           </div>
           <div class="d-grid gap-3 col-sm-auto">
-            <button class="btn btn-lg btn-light rounded-3 px-5 py-3" type="submit">Subscribe</button>
+            <button class="btn btn-lg btn-light rounded-3 px-5 py-3" type="submit">Kirim</button>
           </div>
         </form>
       </div>
@@ -35,11 +34,15 @@
         <p class="text-light">Klinik <br />telehealth company.</p>
       </div>
       <div class="col-6 col-sm-4 col-lg-2 mb-3 order-2 order-sm-1">
+        <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Pesan & Kesan</h5>
+        <ul class="list-unstyled mb-md-4 mb-lg-0">
+          <li class="lh-lg"><a class="footer-link" href="{{ url('landingpage/contact') }}">Contact Us</a></li>
+        </ul>
       </div>
       <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
-        <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">User</h5>
+        <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Pasien</h5>
         <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="footer-link" href="{{ url('/register') }}">Registrasi Akun</a></li>
+          <li class="lh-lg"><a class="footer-link" href="{{ url('/register') }}">Registrasi</a></li>
           <li class="lh-lg"><a class="footer-link" href="{{ url('/login') }}">Login</a></li>
         </ul>
       </div>

@@ -6,6 +6,7 @@ use App\Models\Dokter;
 use App\Models\Poliklinik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 
 class PoliklinikController extends Controller
 {
@@ -143,7 +144,9 @@ class PoliklinikController extends Controller
         ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
         ->orderBy('dokter.id','desc')
         ->get();
+        $response = Http::get('https://covid19.kuningankab.go.id/api/latest');
+        $covid = $response->json();
         $data = Poliklinik::get();
-        return view('landingpage.index',compact('data','dokter'));
+        return view('landingpage.index',compact('data','dokter','covid'));
     }
 }
