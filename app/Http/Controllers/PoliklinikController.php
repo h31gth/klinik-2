@@ -144,8 +144,8 @@ class PoliklinikController extends Controller
         ->join('poliklinik','poliklinik.id','=','dokter.poli_id')
         ->orderBy('dokter.id','desc')
         ->get();
-        $response = Http::get('https://covid19.kuningankab.go.id/api/latest');
-        $covid = $response->json();
+        $response = Http::get('https://data.covid19.go.id/public/api/prov.json');
+        $covid = json_decode($response);
         $data = Poliklinik::get();
         return view('landingpage.index',compact('data','dokter','covid'));
     }
